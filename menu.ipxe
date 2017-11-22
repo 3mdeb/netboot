@@ -5,12 +5,33 @@ menu
 item --gap -- ---------------- iPXE boot menu ----------------
 item shell          ipxe shell
 item deb-netboot    Debian stable netboot
+item deb-stable-netinst    TODO:Debian stable netinst
+item deb-testing-netinst    TODO:Debian testing netinst
+item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
+item voyage         TODO:Voyage
 choose --default boot --timeout 3000 target && goto ${target}
  
 :deb-netboot
-kernel linux-4.8.5 bootfile=http://replace_with_ip/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel linux-4.8.5 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+boot
 goto MENU
- 
+
+deb-stable-netinst
+boot
+goto MENU
+
+deb-testing-netinst
+boot
+goto MENU
+
+deb-testing-netinst-uefi
+boot
+goto MENU
+
+voyage
+boot
+goto MENU
+
 :shell
 shell ||
 goto MENU
