@@ -1,0 +1,16 @@
+#!ipxe
+#
+:MENU
+menu
+item --gap -- ---------------- iPXE boot menu ----------------
+item shell          ipxe shell
+item deb-netboot    Debian stable netboot
+choose --default boot --timeout 3000 target && goto ${target}
+ 
+:deb-netboot
+kernel netboot/linux-4.8.5 bootfile=http://replace_with_ip/boot.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+goto MENU
+ 
+:shell
+shell ||
+goto MENU
