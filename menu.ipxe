@@ -5,7 +5,7 @@ menu
 item --gap -- ---------------- iPXE boot menu ----------------
 item shell          ipxe shell
 item deb-netboot    Debian stable netboot
-item deb-stable-netinst    TODO:Debian stable netinst
+item deb-stable-netinst    Debian stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
 item voyage         TODO:Voyage
@@ -16,7 +16,9 @@ kernel linux-4.8.5 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs 
 boot
 goto MENU
 
-deb-stable-netinst
+:deb-stable-netinst
+kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux bootfile=http://192.168.0.106:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
 boot
 goto MENU
 
