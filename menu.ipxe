@@ -15,22 +15,22 @@ choose --default boot --timeout 3000 target && goto ${target}
  
 :xen
 kernel xen-4.8-amd64 dom0_mem=512M loglvl=all guest_loglvl=all com1=115200,8n1 console=com1
-module linux-4.8.5 console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=192.168.0.106:/srv/nfs/debian/xen,vers=3,udp nfsrootdebug
+module vmlinuz-4.14.9 console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/xen,vers=3,udp nfsrootdebug
 boot
 goto MENU
 
 :deb-netboot-4.8
-kernel linux-4.8.5 bootfile=http://192.168.0.106:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=192.168.0.106:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel linux-4.8.5 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
 :deb-netboot-4.14.9
-kernel vmlinuz-4.14.9 bootfile=http://192.168.0.106:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=192.168.0.106:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel vmlinuz-4.14.9 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
 :deb-stable-netinst
-kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux bootfile=http://192.168.0.106:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
 initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
 boot
 goto MENU
