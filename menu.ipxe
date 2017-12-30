@@ -10,7 +10,7 @@ item deb-netboot-4.14.9    Debian stable netboot 4.14.9
 item deb-stable-netinst    Debian stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
-item voyage         TODO:Voyage
+item voyage-netinst         Voyage 0.11.0 netboot
 choose --default boot --timeout 3000 target && goto ${target}
  
 :xen
@@ -35,15 +35,17 @@ initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current
 boot
 goto MENU
 
-deb-testing-netinst
+:deb-testing-netinst
 boot
 goto MENU
 
-deb-testing-netinst-uefi
+:deb-testing-netinst-uefi
 boot
 goto MENU
 
-voyage
+:voyage-netinst
+kernel kernels/voyage/vmlinuz bootfile=http://replace_with_ip:8000/menu.ipxe boot=live netboot=nfs root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/voyage --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+initrd kernels/voyage/initrd.img
 boot
 goto MENU
 
