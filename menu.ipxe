@@ -11,6 +11,7 @@ item deb-stable-netinst    Debian stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
 item voyage-netinst         Voyage 0.11.0 netboot
+item ubuntu-lts-netinst    Ubuntu LTS netinst
 choose --default boot --timeout 3000 target && goto ${target}
  
 :xen
@@ -35,7 +36,13 @@ initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current
 boot
 goto MENU
 
-:deb-testing-netinst
+:ubuntu-lts-netinst
+kernel http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/hwe-netboot/ubuntu-installer/amd64/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=initrd.gz
+initrd http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/hwe-netboot/ubuntu-installer/amd64/initrd.gz
+boot
+goto MENU
+
+deb-testing-netinst
 boot
 goto MENU
 
