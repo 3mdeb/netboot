@@ -5,8 +5,9 @@ menu
 item --gap -- ---------------- iPXE boot menu ----------------
 item shell          ipxe shell
 item xen    Xen
-item deb-netboot-4.8    Debian stable netboot 4.8.5
-item deb-netboot-4.14.9    Debian stable netboot 4.14.9
+item deb-netboot-4.14.y    Debian stable netboot 4.14.y
+item deb-netboot-4.15.y    Debian stable netboot 4.15.y
+item deb-netboot-4.16.y    Debian stable netboot 4.16.y
 item deb-stable-netinst    Debian stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
@@ -20,13 +21,18 @@ module kernels/vmlinuz-4.14.9 console=hvc0 earlyprintk=xen nomodeset root=/dev/n
 boot
 goto MENU
 
-:deb-netboot-4.8
-kernel kernels/linux-4.8.5 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+:deb-netboot-4.14.y
+kernel kernels/vmlinuz-4.14.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
-:deb-netboot-4.14.9
-kernel kernels/vmlinuz-4.14.9 bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+:deb-netboot-4.15.y
+kernel kernels/vmlinuz-4.15.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+boot
+goto MENU
+
+:deb-netboot-4.16.y
+kernel kernels/vmlinuz-4.16.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
