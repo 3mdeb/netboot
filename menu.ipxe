@@ -11,7 +11,7 @@ item deb-netboot-4.16.y    Debian stable netboot 4.16.y
 item deb-stable-netinst    Debian stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
-item voyage-netinst         Voyage 0.11.0 netboot
+item voyage-netinst         Voyage netinst 0.11.0
 item ubuntu-lts-netinst    Ubuntu LTS netinst
 item --gap -- ------------ iPXE boot menu end ----------------
 choose --default boot --timeout 3000 target && goto ${target}
