@@ -9,6 +9,7 @@ item deb-netboot-4.14.y    Debian stable netboot 4.14.y
 item deb-netboot-4.15.y    Debian stable netboot 4.15.y
 item deb-netboot-4.16.y    Debian stable netboot 4.16.y
 item deb-stable-netinst    Debian stable netinst
+item deb-i386-stable-netinst    Debian i386 stable netinst
 item deb-testing-netinst    TODO:Debian testing netinst
 item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
 item voyage-netinst         Voyage netinst 0.11.0
@@ -40,6 +41,12 @@ goto MENU
 :deb-stable-netinst
 kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
 initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+boot
+goto MENU
+
+:deb-i386-stable-netinst
+kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-i386/current/images/netboot/debian-installer/i386/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz
+initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-i386/current/images/netboot/debian-installer/i386/initrd.gz
 boot
 goto MENU
 
