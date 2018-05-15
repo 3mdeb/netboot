@@ -19,22 +19,22 @@ choose --default boot --timeout 3000 target && goto ${target}
  
 :xen
 kernel kernels/xen-4.8-amd64 dom0_mem=512M loglvl=all guest_loglvl=all com1=115200,8n1 console=com1
-module kernels/vmlinuz-4.14.y console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/xen,vers=3,udp nfsrootdebug
+module kernels/vmlinuz-4.14.y console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/xen,vers=3,udp nfsrootdebug
 boot
 goto MENU
 
 :deb-netboot-4.14.y
-kernel kernels/vmlinuz-4.14.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel kernels/vmlinuz-4.14.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
 :deb-netboot-4.15.y
-kernel kernels/vmlinuz-4.15.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel kernels/vmlinuz-4.15.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
 :deb-netboot-4.16.y
-kernel kernels/vmlinuz-4.16.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian/debian-stable,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
+kernel kernels/vmlinuz-4.16.y bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
