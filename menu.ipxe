@@ -5,15 +5,16 @@ menu
 item --gap -- ---------------- iPXE boot menu ----------------
 item shell          ipxe shell
 item xen    Xen
-item deb-netboot-4.14.y    Debian stable netboot 4.14.y
-item deb-netboot-4.15.y    Debian stable netboot 4.15.y
-item deb-netboot-4.16.y    Debian stable netboot 4.16.y
-item deb-stable-netinst    Debian stable netinst
-item deb-i386-stable-netinst    Debian i386 stable netinst
-item deb-testing-netinst    TODO:Debian testing netinst
-item deb-testing-netinst-uefi    TODO:Debian testing netinst (UEFI-aware)
-item voyage-netinst         Voyage netinst 0.11.0
-item ubuntu-lts-netinst    Ubuntu LTS netinst
+item deb-netboot-4.14.y              Debian stable netboot 4.14.y
+item deb-netboot-4.15.y              Debian stable netboot 4.15.y
+item deb-netboot-4.16.y              Debian stable netboot 4.16.y
+item deb-stable-netinst              Debian stable netinst
+item deb-i386-stable-netinst         Debian i386 stable netinst
+item deb-testing-netinst             TODO:Debian testing netinst
+item deb-testing-netinst-uefi        TODO:Debian testing netinst (UEFI-aware)
+item voyage-netinst                  Voyage netinst 0.11.0
+item ubuntu-lts-netinst              Ubuntu LTS netinst
+item coreos-netinst                  Core OS  netinst
 item --gap -- ------------ iPXE boot menu end ----------------
 choose --default boot --timeout 3000 target && goto ${target}
  
@@ -53,6 +54,13 @@ goto MENU
 :ubuntu-lts-netinst
 kernel http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/hwe-netboot/ubuntu-installer/amd64/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=initrd.gz
 initrd http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/hwe-netboot/ubuntu-installer/amd64/initrd.gz
+boot
+goto MENU
+
+:coreos-netinst
+set base-url http://stable.release.core-os.net/amd64-usr/current
+kernel ${base-url}/coreos_production_pxe.vmlinuz initrd=coreos_production_pxe_image.cpio.gz coreos.first_boot=1 --- console=ttyS0,115200 coreos.autologin=ttyS0 earlyprint=serial,ttyS0,115200
+initrd ${base-url}/coreos_production_pxe_image.cpio.gz
 boot
 goto MENU
 
