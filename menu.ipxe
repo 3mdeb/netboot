@@ -15,6 +15,7 @@ item deb-testing-netinst-uefi        TODO:Debian testing netinst (UEFI-aware)
 item voyage-netinst                  Voyage netinst 0.11.0
 item ubuntu-lts-netinst              Ubuntu LTS netinst
 item coreos-netinst                  Core OS  netinst
+item core-6.4    Core 6.4
 item --gap -- ------------ iPXE boot menu end ----------------
 choose --default boot --timeout 3000 target && goto ${target}
  
@@ -61,6 +62,12 @@ goto MENU
 set base-url http://stable.release.core-os.net/amd64-usr/current
 kernel ${base-url}/coreos_production_pxe.vmlinuz initrd=coreos_production_pxe_image.cpio.gz coreos.first_boot=1 --- console=ttyS0,115200 coreos.autologin=ttyS0 earlyprint=serial,ttyS0,115200
 initrd ${base-url}/coreos_production_pxe_image.cpio.gz
+boot
+goto MENU
+
+:core-6.4
+kernel core-6.4/vmlinuz --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 
+initrd core-6.4/core.gz
 boot
 goto MENU
 
