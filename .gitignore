@@ -246,3 +246,4 @@ nonbin_list
 pxelinux.0
 pxelinux.cfg
 kernels/
+menu.ipxe
