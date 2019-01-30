@@ -245,3 +245,4 @@ ldlinux.c32
 nonbin_list
 pxelinux.0
 pxelinux.cfg
+kernels/
