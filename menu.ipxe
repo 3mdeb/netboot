@@ -3,11 +3,14 @@
 :MENU
 menu
 item --gap -- ---------------- iPXE boot menu ----------------
-item shell          ipxe shell
-item xen    Xen
+item shell                           ipxe shell
+item xen                             Xen
+item xen-dev                         Xen dev
+item xen-linux-dev                   Xen Linux dev
 item deb-netboot-4.14.y              Debian stable netboot 4.14.y
 item deb-netboot-4.15.y              Debian stable netboot 4.15.y
 item deb-netboot-4.16.y              Debian stable netboot 4.16.y
+item deb-linux-dev                   Debian Linux dev
 item deb-stable-netinst              Debian stable netinst
 item deb-i386-stable-netinst         Debian i386 stable netinst
 item deb-testing-netinst             TODO:Debian testing netinst
@@ -22,6 +25,18 @@ choose --default boot --timeout 3000 target && goto ${target}
 :xen
 kernel kernels/xen-4.8-amd64 dom0_mem=512M loglvl=all guest_loglvl=all com1=115200,8n1 console=com1
 module kernels/vmlinuz-4.14.y console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/xen,vers=3,udp nfsrootdebug
+boot
+goto MENU
+
+:xen-dev
+kernel kernels/xen-dev dom0_mem=512M loglvl=all guest_loglvl=all com1=115200,8n1 console=com1
+module kernels/vmlinuz-4.14.y console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/xen,vers=3,udp nfsrootdebug
+boot
+goto MENU
+
+:xen-linux-dev
+kernel kernels/xen-4.8-amd64 dom0_mem=512M loglvl=all guest_loglvl=all com1=115200,8n1 console=com1
+module kernels/vmlinuz-dev console=hvc0 earlyprintk=xen nomodeset root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/xen,vers=3,udp nfsrootdebug
 boot
 goto MENU
 
@@ -43,6 +58,11 @@ goto MENU
 :deb-stable-netinst
 kernel http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/linux bootfile=http://replace_with_ip:8000/menu.ipxe --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200 initrd=http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
 initrd http://ftp.nl.debian.org/debian/dists/stable/main/installer-amd64/current/images/netboot/debian-installer/amd64/initrd.gz
+boot
+goto MENU
+
+:deb-linux-dev
+kernel kernels/vmlinuz-dev bootfile=http://replace_with_ip:8000/menu.ipxe root=/dev/nfs rw ip=dhcp nfsroot=replace_with_ip:/srv/nfs/debian,vers=3,udp nfsrootdebug --- console=ttyS0,115200 earlyprint=serial,ttyS0,115200
 boot
 goto MENU
 
@@ -71,7 +91,7 @@ initrd core-6.4/core.gz
 boot
 goto MENU
 
-deb-testing-netinst
+:deb-testing-netinst
 boot
 goto MENU
 
