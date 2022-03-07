@@ -1,0 +1,3 @@
+[submodule "external/netboot.xyz"]
+	path = external/netboot.xyz
+	url = https://github.com/netbootxyz/netboot.xyz
