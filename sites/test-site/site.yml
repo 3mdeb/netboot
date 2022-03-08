@@ -1,0 +1,6 @@
+---
+name: test-site
+server:
+  tftp: 69
+  http: 80
+  app: 3000

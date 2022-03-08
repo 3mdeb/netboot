@@ -1,0 +1,4 @@
+generate_menus: true
+generate_disks: false
+generate_checksums: false
+generate_local_vars: false
