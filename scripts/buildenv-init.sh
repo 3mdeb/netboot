@@ -6,4 +6,6 @@ set -euo pipefail
 cp -r /netboot_src/* .
 cp /custom/user_overrides.yml .
 
-$@
+ansible-playbook -i inventory \
+    -e site_conf_dir=/custom \
+    site.yml

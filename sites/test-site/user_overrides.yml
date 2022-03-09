@@ -1,4 +1,26 @@
+site_name: Test netboot server
+
+# Address of the server netboot.xyz will scan for boot files. Can be IP address.
+boot_domain: 192.168.4.148
+
+# Generate OS selection menus. Enable this to include upstream OSes in menu.
+# If this option is disabled and custom_generate_menus is true then only custom
+# templates are included.
 generate_menus: true
-generate_disks: false
-generate_checksums: false
-generate_local_vars: false
+
+# Whether to generate netboot.xyz kernels: netboot.xyz.lkrn, netboot.xyz.efi
+generate_disks: true
+generate_checksums: true
+generate_local_vars: true
+
+# Enable to include custom menus.
+custom_generate_menus: true
+# Custom templates directory
+# site_conf_dir points to directory with this file.
+custom_templates_dir: "{{ site_conf_dir }}/templates"
+
+### Cache setup
+
+# Address of the server with boot files (mirror).
+# Default: https://github.com/netbootxyz
+live_endpoint: http://192.168.4.148
