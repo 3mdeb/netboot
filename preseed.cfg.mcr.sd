@@ -15,6 +15,8 @@ d-i mirror/country string manual
 d-i mirror/http/hostname string ftp.pl.debian.org
 d-i mirror/http/directory string /debian
 d-i mirror/http/proxy string
+# bullseye is EOL, its security updates are only on archive.debian.org
+d-i apt-setup/security_host string archive.debian.org
 d-i clock-setup/utc boolean true
 d-i clock-setup/ntp boolean true
 d-i time/zone string Europe/Warsaw
