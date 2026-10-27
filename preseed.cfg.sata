@@ -29,6 +29,10 @@ d-i partman-lvm/confirm boolean true
 d-i partman-lvm/confirm_nooverwrite boolean true
 d-i partman-auto/choose_recipe select atomic
 d-i partman-partitioning/confirm_write_new_label boolean true
+# Don't stop if partman can't determine the default partition table type
+d-i partman-partitioning/unknown_label boolean true
+# Always create MBR partition tables
+d-i partman-partitioning/default_label string msdos
 d-i partman/choose_partition select finish
 d-i partman/confirm boolean true
 d-i partman/confirm_nooverwrite boolean true
